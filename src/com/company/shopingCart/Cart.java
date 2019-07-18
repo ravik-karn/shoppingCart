@@ -5,10 +5,11 @@ import java.util.List;
 
 public class Cart {
     private List<LineItem> itemsInCart;
-    private static final double SALES_TAX = 0.125;
+    private TaxCalculator taxCalculator;
 
     public Cart() {
         this.itemsInCart = new ArrayList<>();
+        this.taxCalculator = new SalesTaxCalculator();
     }
 
     public void addItem(Product product, int quantity) {
@@ -52,7 +53,7 @@ public class Cart {
     }
 
     public double totalSalesTax() {
-        return totalSalesPrice() * SALES_TAX;
+        return taxCalculator.calculateTax(totalSalesPrice());
     }
 
     public double totalPrice() {
