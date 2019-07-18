@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Cart {
     private List<LineItem> itemsInCart;
+    private static final double SALES_TAX = 0.125;
 
     public Cart() {
         this.itemsInCart = new ArrayList<>();
@@ -48,5 +49,13 @@ public class Cart {
 
     public int totalItem() {
         return itemsInCart.size();
+    }
+
+    public double totalSalesTax() {
+        return totalSalesPrice() * SALES_TAX;
+    }
+
+    public double totalPrice() {
+        return totalSalesPrice() + totalSalesTax();
     }
 }
