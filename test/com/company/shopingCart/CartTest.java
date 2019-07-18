@@ -10,6 +10,15 @@ public class CartTest {
         Cart cart = new Cart();
         Product product = new Product("Dove", 39.99);
         cart.addItem(product, 5);
-        assertEquals(39.99 * 5, cart.totalSalesPrice(), 0);
+        assertEquals(199.95, cart.totalSalesPrice(), 0.01);
+    }
+
+    @Test
+    public void shouldAddItemOfSameTypeInTheCart() {
+        Cart cart = new Cart();
+        Product product = new Product("Dove", 39.99);
+        cart.addItem(product, 5);
+        cart.addItem(product, 3);
+        assertEquals(319.92, cart.totalSalesPrice(), 0.01);
     }
 }
